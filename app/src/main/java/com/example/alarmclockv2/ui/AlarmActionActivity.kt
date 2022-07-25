@@ -1,9 +1,11 @@
-package com.example.alarmclockv2
+package com.example.alarmclockv2.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.alarmclockv2.R
 
-class MainActivity : AppCompatActivity() {
+class AlarmActionActivity : AppCompatActivity()
+{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
