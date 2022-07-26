@@ -3,17 +3,23 @@ package com.example.alarmclockv2.ui.screens
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.alarmclockv2.App
 import com.example.alarmclockv2.R
 import com.example.alarmclockv2.databinding.FragmentAlarmInfoBinding
+import com.example.alarmclockv2.viewModels.AlarmActionViewModel
+import com.example.alarmclockv2.viewModels.AlarmInfoViewModel
 
 class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info)
 {
     private lateinit var binding : FragmentAlarmInfoBinding
+    private val viewModel  by viewModels<AlarmInfoViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAlarmInfoBinding.bind(view)
+        (requireActivity().application as App).appComponent.injectViewModel(viewModel)
 
         binding.goBack.setOnClickListener {
             findNavController().navigate(R.id.action_alarmInfoFragment_to_alarmListFragment)
