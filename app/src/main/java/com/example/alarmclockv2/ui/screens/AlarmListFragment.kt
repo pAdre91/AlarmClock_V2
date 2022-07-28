@@ -21,7 +21,7 @@ class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
         binding = FragmentAlarmListBinding.bind(view)
         (requireActivity().application as App).appComponent.injectViewModel(viewModel)
 
-        binding.goToAlarmInfo.setOnClickListener {
+        binding.addAlarmClockButton.setOnClickListener {
             findNavController().navigate(R.id.action_alarmListFragment_to_alarmInfoFragment)
         }
     }
