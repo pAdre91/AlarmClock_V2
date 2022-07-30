@@ -24,9 +24,5 @@ class SoundSettingsFragment : Fragment(R.layout.fragment_sound_settings)
         binding.goBack.setOnClickListener {
             findNavController().navigate(R.id.action_soundSettingsFragment_to_alarmInfoFragment)
         }
-
-        binding.saveAndBack.setOnClickListener {
-
-        }
     }
 }

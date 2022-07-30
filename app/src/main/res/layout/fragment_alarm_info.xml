@@ -265,26 +265,5 @@
             android:textColor="@color/white"
             android:textSize="16dp"
             />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-<!--    <Button-->
-<!--        android:id="@+id/goToVibrationSettings"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        android:text="vibro"-->
-
-<!--        tools:ignore="MissingConstraints" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/goToSoundSettings"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        android:text="sound"-->
-<!--        tools:ignore="MissingConstraints" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
