@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.alarmclockv2.App
 import com.example.alarmclockv2.R
 import com.example.alarmclockv2.databinding.FragmentVibrationSettingsBinding
-import com.example.alarmclockv2.viewModels.AlarmListViewModel
 import com.example.alarmclockv2.viewModels.VibrationSettingsViewModel
 
 class VibrationSettingsFragment : Fragment(R.layout.fragment_vibration_settings)
@@ -23,10 +22,6 @@ class VibrationSettingsFragment : Fragment(R.layout.fragment_vibration_settings)
 
         binding.goBack.setOnClickListener {
             findNavController().navigate(R.id.action_vibrationSettingsFragment_to_alarmInfoFragment)
-        }
-
-        binding.saveAndBack.setOnClickListener {
-
         }
     }
 }
