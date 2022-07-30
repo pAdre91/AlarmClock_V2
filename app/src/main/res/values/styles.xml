@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Number picker-->
+    <style name="DefaultNumberPickerTheme" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/purple_350</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+</resources>
