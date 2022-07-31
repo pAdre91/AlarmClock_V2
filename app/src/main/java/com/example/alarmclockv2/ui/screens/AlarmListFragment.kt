@@ -8,8 +8,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.alarmclockv2.App
 import com.example.alarmclockv2.R
 import com.example.alarmclockv2.databinding.FragmentAlarmListBinding
-import com.example.alarmclockv2.viewModels.AlarmInfoViewModel
 import com.example.alarmclockv2.viewModels.AlarmListViewModel
+import java.text.DateFormatSymbols
 
 class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
 {
@@ -24,5 +24,44 @@ class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
         binding.addAlarmClockButton.setOnClickListener {
             findNavController().navigate(R.id.action_alarmListFragment_to_alarmInfoFragment)
         }
+
+        displayNearestTimer()
+        displayTimersList()
+    }
+
+    private fun displayNearestTimer()
+    {
+        val alarmDate = viewModel.getNearestAlarmDate()
+        val nearestAlarmTime = StringBuilder()
+
+        nearestAlarmTime.append(alarmDate.hours).append(" ").append(resources.getString(R.string.hour)).append(" ")
+            .append(alarmDate.minutes).append(" ").append(resources.getString(R.string.minutes))
+        binding.nearestAlarmClockTime.text = nearestAlarmTime
+
+        val nearestAlarmDate = StringBuilder()
+        val dfs = DateFormatSymbols().months
+        nearestAlarmDate.append(alarmDate.day).append(" ").append(dfs[alarmDate.month])
+        binding.nearestAlarmClockDate.text = nearestAlarmDate
+
+    }
+
+    private fun displayTimersList()
+    {
+
+    }
+
+    private fun switchTimerActive()     //Изменить принимаемое значение
+    {
+
+    }
+
+    private fun removeTimers()     //Изменить принимаемое значение, реализацию оставить на потом
+    {
+
+    }
+
+    private fun getLocalizedMonth(monthNumber : Int) : String
+    {
+        return ""
     }
 }

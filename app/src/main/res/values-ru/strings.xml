@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlarmClockV2</string>
+
+    <string name="alarm_clock_via">Будильник через: </string>
+
+    <string name="hour">ч.</string>
+    <string name="minutes">мин.</string>
+</resources>

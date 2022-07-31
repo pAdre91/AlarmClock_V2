@@ -11,15 +11,15 @@ class AlarmClockService @Inject constructor() : IAlarmClockService
     lateinit var storage : IAlarmClockStorage
 
 
-    override fun getAllAlarmClocks(): List<AlarmInfo> {
+    override suspend fun getAllAlarmClocks(): List<AlarmInfo> {
         TODO("Not yet implemented")
     }
 
-    override fun setTimer(timeMS: Long, intent: Intent, alarmInfo: AlarmInfo) {
+    override suspend fun setTimer(timeMS: Long, intent: Intent, alarmInfo: AlarmInfo) {
         TODO("Not yet implemented")
     }
 
-    override fun removeTimer(timeMS: Long) {
+    override suspend fun removeTimer(timeMS: Long) {
         TODO("Not yet implemented")
     }
 }

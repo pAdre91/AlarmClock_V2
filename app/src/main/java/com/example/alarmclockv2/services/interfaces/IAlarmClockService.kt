@@ -5,7 +5,7 @@ import com.example.alarmclockv2.services.impl.AlarmInfo
 
 interface IAlarmClockService
 {
-    fun getAllAlarmClocks() : List<AlarmInfo>
-    fun setTimer(timeMS : Long, intent : Intent, alarmInfo: AlarmInfo)
-    fun removeTimer(timeMS : Long)
+    suspend fun getAllAlarmClocks() : List<AlarmInfo>
+    suspend fun setTimer(timeMS : Long, intent : Intent, alarmInfo: AlarmInfo)
+    suspend fun removeTimer(timeMS : Long)
 }
