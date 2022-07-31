@@ -12,11 +12,46 @@ class AlarmClockService @Inject constructor() : IAlarmClockService
 
 
     override suspend fun getAllAlarmClocks(): List<AlarmInfo> {
-        TODO("Not yet implemented")
+        return listOf(
+            AlarmInfo(
+            System.currentTimeMillis(),
+            "name",
+            1,
+            1,
+            false,
+            1,
+            false
+        ),
+            AlarmInfo(
+                System.currentTimeMillis(),
+                "name",
+                1,
+                1,
+                false,
+                1,
+                true
+            )
+        )
+    }
+
+    override suspend fun getNearestAlarmClock(): AlarmInfo {
+        return  AlarmInfo(
+            System.currentTimeMillis(),
+            "name",
+            1,
+            1,
+            false,
+            1,
+            true
+        )
     }
 
     override suspend fun setTimer(timeMS: Long, intent: Intent, alarmInfo: AlarmInfo) {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun switchTimerActive(timeMS: Long, isActive: Boolean) {
+        //TODO
     }
 
     override suspend fun removeTimer(timeMS: Long) {

@@ -53,6 +53,8 @@
             android:id="@+id/isAlarmClockActive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:theme="@style/SwitchTheme"
+
             android:checked="true"
             />
     </LinearLayout>

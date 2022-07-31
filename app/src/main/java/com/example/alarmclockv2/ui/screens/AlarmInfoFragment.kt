@@ -12,10 +12,9 @@ import com.example.alarmclockv2.databinding.FragmentAlarmInfoBinding
 import com.example.alarmclockv2.viewModels.AlarmActionViewModel
 import com.example.alarmclockv2.viewModels.AlarmInfoViewModel
 
-class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info)
-{
-    private lateinit var binding : FragmentAlarmInfoBinding
-    private val viewModel  by viewModels<AlarmInfoViewModel>()
+class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info) {
+    private lateinit var binding: FragmentAlarmInfoBinding
+    private val viewModel by viewModels<AlarmInfoViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,8 +41,7 @@ class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info)
         }
     }
 
-    private fun initTilePickers()
-    {
+    private fun initTilePickers() {
         binding.minutePicker.minValue = 0
         binding.minutePicker.maxValue = 59
 
@@ -55,6 +53,10 @@ class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info)
 
         binding.horusPicker.value = 6
         binding.minutePicker.value = 0
+    }
+
+    companion object {
+        const val TIMER_KEY = "timerMS"
     }
 }
 
