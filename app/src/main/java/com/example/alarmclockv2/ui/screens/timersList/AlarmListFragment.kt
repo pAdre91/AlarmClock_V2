@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alarmclockv2.App
 import com.example.alarmclockv2.R
 import com.example.alarmclockv2.databinding.FragmentAlarmListBinding
+import com.example.alarmclockv2.services.FormattedTime
 import com.example.alarmclockv2.ui.screens.AlarmInfoFragment
 import com.example.alarmclockv2.viewModels.AlarmListViewModel
-import com.example.alarmclockv2.viewModels.FormattedTime
 
 class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
 {
@@ -34,7 +34,10 @@ class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
         (requireActivity().application as App).appComponent.injectViewModel(viewModel)
 
         binding.addAlarmClockButton.setOnClickListener {
-            findNavController().navigate(R.id.action_alarmListFragment_to_alarmInfoFragment)
+            findNavController().navigate(R.id.action_alarmListFragment_to_alarmInfoFragment,
+                    bundleOf(
+                    Pair(AlarmInfoFragment.TIMER_KEY, 0)
+                    ))
         }
 
         adapter = AlarmListAdapter(
@@ -52,6 +55,7 @@ class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
                 }
             }
         )
+        //TODO Добавить надпись пока нет добавленных будильников
         binding.alarmClockListContainer.adapter = adapter
         binding.alarmClockListContainer.layoutManager = LinearLayoutManager(requireContext())
 
@@ -60,12 +64,15 @@ class AlarmListFragment : Fragment(R.layout.fragment_alarm_list)
         }
 
         viewModel.nearestTimer.observe(viewLifecycleOwner) {
-            displayNearestTimer(it.formattedTime)
+            displayNearestTimer(it)
         }
     }
 
+    //TODO Добавить состояние для отсутсвия будильников и для всех отключенных будильников
     private fun displayNearestTimer(alarmDate : FormattedTime)
     {
+        binding.nextTimerInfo.visibility = View.VISIBLE
+
         val nearestAlarmTime = StringBuilder()
 
         nearestAlarmTime.append(alarmDate.hours).append(" ").append(resources.getString(R.string.hour)).append(" ")

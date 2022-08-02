@@ -14,6 +14,6 @@ class SoundService @Inject constructor() : ISoundService
     }
 
     override fun getSoundName(soundId: Int): String {
-        TODO("Not yet implemented")
+        return "TODO"
     }
 }

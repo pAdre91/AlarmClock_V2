@@ -14,6 +14,6 @@ class VibrationService @Inject constructor() : IVibrationService
     }
 
     override fun getPatternName(vibrationPattern: Int): String {
-        TODO("Not yet implemented")
+        return "TODO"
     }
 }
