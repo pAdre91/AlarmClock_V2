@@ -11,15 +11,50 @@ class AlarmClockService @Inject constructor() : IAlarmClockService
     lateinit var storage : IAlarmClockStorage
 
 
-    override fun getAllAlarmClocks(): List<AlarmInfo> {
+    override suspend fun getAllAlarmClocks(): List<AlarmInfo> {
+        return listOf(
+            AlarmInfo(
+            System.currentTimeMillis(),
+            "name",
+            1,
+            1,
+            false,
+            1,
+            false
+        ),
+            AlarmInfo(
+                System.currentTimeMillis(),
+                "name",
+                1,
+                1,
+                false,
+                1,
+                true
+            )
+        )
+    }
+
+    override suspend fun getNearestAlarmClock(): AlarmInfo {
+        return  AlarmInfo(
+            System.currentTimeMillis(),
+            "name",
+            1,
+            1,
+            false,
+            1,
+            true
+        )
+    }
+
+    override suspend fun setTimer(timeMS: Long, intent: Intent, alarmInfo: AlarmInfo) {
         TODO("Not yet implemented")
     }
 
-    override fun setTimer(timeMS: Long, intent: Intent, alarmInfo: AlarmInfo) {
-        TODO("Not yet implemented")
+    override suspend fun switchTimerActive(timeMS: Long, isActive: Boolean) {
+        //TODO
     }
 
-    override fun removeTimer(timeMS: Long) {
+    override suspend fun removeTimer(timeMS: Long) {
         TODO("Not yet implemented")
     }
 }

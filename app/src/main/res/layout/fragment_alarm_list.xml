@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    tools:context=".ui.screens.AlarmListFragment"
+    tools:context=".ui.screens.timersList.AlarmListFragment"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,16 +24,30 @@
         >
 
         <TextView
-            android:id="@+id/nearestAlarmClockTime"
+            android:id="@+id/nearestAlarmClockHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/nearestAlarmClockTime"
+
+            android:text="@string/alarm_clock_via"
+            android:textSize="32sp"
+            android:textColor="@color/gray_white"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/nearestAlarmClockTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/nearestAlarmClockHeader"
             app:layout_constraintBottom_toTopOf="@id/nearestAlarmClockDate"
 
             android:text="TESTTESTTEST"
             android:textSize="32sp"
-            android:textColor="@color/white"
+            android:textColor="@color/gray_white"
             android:gravity="center"
             />
 
@@ -46,7 +60,7 @@
 
             android:text="TESTTESTTEST"
             android:textSize="16sp"
-            android:textColor="@color/white"
+            android:textColor="@color/gray_medium"
             android:gravity="center"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

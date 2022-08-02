@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AlarmClockV2</string>
+
+    <string name="alarm_clock_via">Alarm clock via:</string>
+
+    <string name="hour">h.</string>
+    <string name="minutes">min.</string>
+
+
 </resources>
