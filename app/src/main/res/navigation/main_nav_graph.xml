@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_sound_settings" />
     <fragment
         android:id="@+id/vibrationSettingsFragment"
-        android:name="com.example.alarmclockv2.ui.screens.VibrationSettingsFragment"
+        android:name="com.example.alarmclockv2.ui.screens.vibrationSettings.VibrationSettingsFragment"
         android:label="fragment_vibration_settings"
         tools:layout="@layout/fragment_vibration_settings" />
 </navigation>

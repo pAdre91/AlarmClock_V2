@@ -19,6 +19,5 @@ class AlarmActionFragment : Fragment(R.layout.fragment_alarm_action)
         binding = FragmentAlarmActionBinding.bind(view)
 
         (requireActivity().application as App).appComponent.injectViewModel(viewModel)
-        val qwe = viewModel.soundService
     }
 }

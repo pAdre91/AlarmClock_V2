@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.alarmclockv2.databinding.SoundItemBinding
+import com.example.alarmclockv2.databinding.SelectListItemBinding
 
 class SoundListAdapter(
     private val clickAction: ISoundItemClickAction,
@@ -19,7 +19,7 @@ class SoundListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SoundItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = SoundItemBinding.inflate(inflater, parent, false)
+        val binding = SelectListItemBinding.inflate(inflater, parent, false)
 
         binding.root.setOnClickListener(this)
 
@@ -29,9 +29,9 @@ class SoundListAdapter(
     override fun onBindViewHolder(holder: SoundItemViewHolder, position: Int) {
         with(holder.binding)
         {
-            soundItem.text = soundsList[position]
+            item.text = soundsList[position]
             root.tag = soundsList[position]
-            soundItem.isChecked = (actualSound == soundsList[position])
+            item.isChecked = (actualSound == soundsList[position])
         }
     }
 
@@ -48,7 +48,7 @@ class SoundListAdapter(
     }
 }
 
-class SoundItemViewHolder(val binding : SoundItemBinding) : RecyclerView.ViewHolder(binding.root)
+class SoundItemViewHolder(val binding : SelectListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 interface ISoundItemClickAction
 {
