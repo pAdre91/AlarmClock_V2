@@ -21,7 +21,7 @@ class VibrationSettingsFragment : Fragment(R.layout.fragment_vibration_settings)
         (requireActivity().application as App).appComponent.injectViewModel(viewModel)
 
         binding.goBack.setOnClickListener {
-            findNavController().navigate(R.id.action_vibrationSettingsFragment_to_alarmInfoFragment)
+            findNavController().navigateUp()
         }
     }
 }

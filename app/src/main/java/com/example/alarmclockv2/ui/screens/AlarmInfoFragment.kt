@@ -14,6 +14,7 @@ import com.example.alarmclockv2.R
 import com.example.alarmclockv2.databinding.FragmentAlarmInfoBinding
 import com.example.alarmclockv2.viewModels.AlarmInfoViewModel
 import com.example.alarmclockv2.viewModels.CurrentAlarmClockViewModel
+import com.example.alarmclockv2.viewModels.UserAlarmInfo
 
 class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info) {
     private lateinit var binding: FragmentAlarmInfoBinding
@@ -28,7 +29,7 @@ class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info) {
 
         binding.goBack.setOnClickListener {
             sharedViewModel.cleanAlarmClock()
-            findNavController().navigate(R.id.action_alarmInfoFragment_to_alarmListFragment)
+            findNavController().navigateUp()
         }
 
         binding.soundInfoContainer.setOnClickListener {
@@ -42,25 +43,36 @@ class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info) {
         binding.saveAndGoBack.setOnClickListener {
             viewModel.setAlarmClock(sharedViewModel.currentTimer, getAlarmAction())
             sharedViewModel.cleanAlarmClock()
-            findNavController().navigate(R.id.action_alarmInfoFragment_to_alarmListFragment)
+            findNavController().navigateUp()
         }
 
         viewModel.currentTimerInfo.observe(viewLifecycleOwner) {
-            initTilePickers(it.formattedTime.hours.toInt(), it.formattedTime.minutes.toInt())
-
-            binding.alarmClockName.setText(it.timerName)
-
-            binding.soundName.text = it.soundName
-            binding.isSoundActive.isChecked = it.isSoundActive
-
-            binding.vibrationPatternName.text = it.vibrationPatternName
-            binding.isVibrationActive.isChecked = it.isVibrationActive
-
-            sharedViewModel.currentTimer = it
+            setAlarmClockInfo(it)
         }
 
         val timerMS = requireArguments().getLong(TIMER_KEY)
-        viewModel.requestAlarmClockInfo(timerMS)
+        if(!sharedViewModel.isAlarmClockChanged() && timerMS != 0L) {
+            viewModel.requestAlarmClockInfo(timerMS)
+        }
+        else
+        {
+            setAlarmClockInfo(sharedViewModel.currentTimer)
+        }
+    }
+
+    private fun setAlarmClockInfo(info : UserAlarmInfo)
+    {
+        initTimePickers(info.formattedTime.hours.toInt(), info.formattedTime.minutes.toInt())
+
+        binding.alarmClockName.setText(info.timerName)
+
+        binding.soundName.text = info.soundName
+        binding.isSoundActive.isChecked = info.isSoundActive
+
+        binding.vibrationPatternName.text = info.vibrationPatternName
+        binding.isVibrationActive.isChecked = info.isVibrationActive
+
+        sharedViewModel.currentTimer = info
     }
 
     //TODO написать нормальную реализацию при реализации будильника
@@ -71,7 +83,7 @@ class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info) {
         return PendingIntent.getActivity(requireContext(), 1, alarmAction,0)
     }
 
-    private fun initTilePickers(hours : Int = 6, minutes : Int = 0) {
+    private fun initTimePickers(hours : Int, minutes : Int) {
         binding.minutePicker.minValue = 0
         binding.minutePicker.maxValue = 59
 

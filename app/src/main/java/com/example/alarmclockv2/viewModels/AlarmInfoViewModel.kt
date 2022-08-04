@@ -33,7 +33,8 @@ class AlarmInfoViewModel : ViewModel()
             _currentTimerInfo.value = UserAlarmInfo(
                 alarmInfo.name,
                 Utils.getTimeFromMS(alarmInfo.timeMS),
-                soundService.getSoundName(alarmInfo.soundId),
+                "",
+//                soundService.getSoundName(alarmInfo.soundId), TODO вставить имя песни или изменить дату
                 alarmInfo.isSoundActive,
                 alarmInfo.volume,
                 vibrationService.getPatternName(alarmInfo.vibratePattern),
@@ -44,7 +45,7 @@ class AlarmInfoViewModel : ViewModel()
 
     fun setAlarmClock(alarmInfo: UserAlarmInfo, intent : PendingIntent)
     {
-        //TODO не забыть обработать 2 сценария, приновом будильнике и при изменении старого
+        //TODO не забыть обработать 2 сценария, при новом будильнике и при изменении старого
     }
 }
 

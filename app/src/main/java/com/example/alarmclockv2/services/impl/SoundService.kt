@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class SoundService @Inject constructor() : ISoundService
 {
-    override fun play(soundId: Int, volume: Int) {
+    override fun play(soundName: String, volume: Int) {
         TODO("Not yet implemented")
     }
 
@@ -13,7 +13,8 @@ class SoundService @Inject constructor() : ISoundService
         TODO("Not yet implemented")
     }
 
-    override fun getSoundName(soundId: Int): String {
-        return "TODO"
+    //NOTE список может быть большим, лучше сделать постепенное получение через Flow
+    override suspend fun getAllSounds(): List<String> {
+        return listOf("firstSong", "SecondSong", "ThirdSong")
     }
 }

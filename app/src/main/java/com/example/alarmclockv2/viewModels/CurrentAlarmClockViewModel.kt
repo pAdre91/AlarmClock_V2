@@ -48,6 +48,11 @@ class CurrentAlarmClockViewModel : ViewModel()
     {
         currentTimer = UserAlarmInfo()
     }
+
+    fun isAlarmClockChanged() : Boolean
+    {
+        return currentTimer != UserAlarmInfo()
+    }
 }
 
 data class UserAlarmInfo(

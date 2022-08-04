@@ -2,7 +2,8 @@ package com.example.alarmclockv2.services.interfaces
 
 interface ISoundService
 {
-    fun play(soundId : Int, volume : Int)
+    fun play(soundName : String, volume : Int)
     fun stop()
-    fun getSoundName(soundId : Int) : String
+
+    suspend fun getAllSounds() : List<String>
 }
