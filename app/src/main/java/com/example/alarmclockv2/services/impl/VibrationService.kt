@@ -6,14 +6,22 @@ import javax.inject.Inject
 class VibrationService @Inject constructor() : IVibrationService
 {
     override fun play(vibrationPattern: Int, delayMS: Int) {
-        TODO("Not yet implemented")
+        //TODO("Not yet implemented")
     }
 
     override fun stop() {
-        TODO("Not yet implemented")
+        //TODO("Not yet implemented")
     }
 
     override fun getPatternName(vibrationPattern: Int): String {
-        TODO("Not yet implemented")
+        return "TODO"
+    }
+
+    override suspend fun getAllVibrationPatterns(): List<String> {
+        return listOf(
+            "firstPattern",
+            "secondPattern",
+            "thirdPattern"
+        )
     }
 }

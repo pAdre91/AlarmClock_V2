@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.screens.VibrationSettingsFragment"
+    tools:context=".ui.screens.vibrationSettings.VibrationSettingsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -53,13 +53,13 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/soundsList"
+        android:id="@+id/patternsList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
         android:layout_marginTop="25dp"
         app:layout_constraintTop_toBottomOf="@id/alarmClockVibrationHeader"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/sound_item"
+        tools:listitem="@layout/select_list_item"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

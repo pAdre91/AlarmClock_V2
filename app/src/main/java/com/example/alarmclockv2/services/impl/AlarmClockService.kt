@@ -14,35 +14,40 @@ class AlarmClockService @Inject constructor() : IAlarmClockService
     override suspend fun getAllAlarmClocks(): List<AlarmInfo> {
         return listOf(
             AlarmInfo(
-            System.currentTimeMillis(),
+            System.currentTimeMillis()+10000,
             "name",
             1,
             1,
-            false,
-            1,
-            false
+                isSoundActive = true,
+                isVibrateActive = false,
+                vibratePattern = 1,
+                isActive = true
         ),
             AlarmInfo(
-                System.currentTimeMillis(),
+                System.currentTimeMillis()+1000000,
                 "name",
                 1,
                 1,
-                false,
-                1,
-                true
+                isSoundActive = false,
+                isVibrateActive = false,
+                vibratePattern = 1,
+                isActive = false
             )
         )
     }
 
-    override suspend fun getNearestAlarmClock(): AlarmInfo {
-        return  AlarmInfo(
-            System.currentTimeMillis(),
+    override suspend fun getAlarmClockByTime(timeMS: Long): AlarmInfo {
+        //TODO if database return null, create AlarmInfo with Default values
+
+        return AlarmInfo(
+            System.currentTimeMillis()+10000,
             "name",
             1,
             1,
-            false,
-            1,
-            true
+            isSoundActive = true,
+            isVibrateActive = true,
+            vibratePattern = 1,
+            isActive = true
         )
     }
 
@@ -64,7 +69,8 @@ data class AlarmInfo(
     val name : String,
     val soundId : Int,
     val volume : Int,
-    val isVibrate : Boolean,
+    val isSoundActive : Boolean,
+    val isVibrateActive : Boolean,
     val vibratePattern : Int,
     val isActive : Boolean
 )

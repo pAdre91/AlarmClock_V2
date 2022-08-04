@@ -20,9 +20,6 @@
         android:label="fragment_alarm_info"
         tools:layout="@layout/fragment_alarm_info" >
         <action
-            android:id="@+id/action_alarmInfoFragment_to_alarmListFragment"
-            app:destination="@id/alarmListFragment" />
-        <action
             android:id="@+id/action_alarmInfoFragment_to_vibrationSettingsFragment"
             app:destination="@id/vibrationSettingsFragment" />
         <action
@@ -31,20 +28,12 @@
     </fragment>
     <fragment
         android:id="@+id/soundSettingsFragment"
-        android:name="com.example.alarmclockv2.ui.screens.SoundSettingsFragment"
+        android:name="com.example.alarmclockv2.ui.screens.soundSettings.SoundSettingsFragment"
         android:label="fragment_sound_settings"
-        tools:layout="@layout/fragment_sound_settings" >
-        <action
-            android:id="@+id/action_soundSettingsFragment_to_alarmInfoFragment"
-            app:destination="@id/alarmInfoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_sound_settings" />
     <fragment
         android:id="@+id/vibrationSettingsFragment"
-        android:name="com.example.alarmclockv2.ui.screens.VibrationSettingsFragment"
+        android:name="com.example.alarmclockv2.ui.screens.vibrationSettings.VibrationSettingsFragment"
         android:label="fragment_vibration_settings"
-        tools:layout="@layout/fragment_vibration_settings" >
-        <action
-            android:id="@+id/action_vibrationSettingsFragment_to_alarmInfoFragment"
-            app:destination="@id/alarmInfoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_vibration_settings" />
 </navigation>

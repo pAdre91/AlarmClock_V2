@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.alarmclockv2.services.FormattedTime
+import com.example.alarmclockv2.services.Utils
+import com.example.alarmclockv2.services.impl.AlarmInfo
 import com.example.alarmclockv2.services.interfaces.IAlarmClockService
 import kotlinx.coroutines.launch
 import java.text.DateFormatSymbols
@@ -18,8 +21,8 @@ class AlarmListViewModel : ViewModel()
     private val _timersInfoList = MutableLiveData<List<DisplayTimerInfo>>()
     val timersInfoList : LiveData<List<DisplayTimerInfo>> = _timersInfoList
 
-    private val _nearestTimer = MutableLiveData<DisplayTimerInfo>()
-    var nearestTimer : LiveData<DisplayTimerInfo> = _nearestTimer
+    private val _nearestTimer = MutableLiveData<FormattedTime>()
+    var nearestTimer : LiveData<FormattedTime> = _nearestTimer
 
     fun getAlarmClockList()
     {
@@ -30,14 +33,13 @@ class AlarmListViewModel : ViewModel()
             alarmsInfo.forEach {
                 displayTimerList.add(
                         DisplayTimerInfo(
-                        it.timeMS,
+                        Utils.getActualDate(it.timeMS),
                         it.name,
-                        getTimeFromMS(it.timeMS),
+                        Utils.getTimeFromMS(it.timeMS),
                         it.isActive
                     )
                 )
             }
-
             _timersInfoList.value = displayTimerList
         }
     }
@@ -45,14 +47,18 @@ class AlarmListViewModel : ViewModel()
     fun getNearestTimer()
     {
         viewModelScope.launch {
-            val alarmInfo = alarmClockService.getNearestAlarmClock()
+            val alarmInfo = alarmClockService.getAllAlarmClocks()
+            if(alarmInfo.isEmpty()) return@launch
 
-            _nearestTimer.value = DisplayTimerInfo(
-                alarmInfo.timeMS,
-                alarmInfo.name,
-                getTimeFromMS(alarmInfo.timeMS),
-                alarmInfo.isActive
-            )
+            var nearestTimer: AlarmInfo? = alarmInfo.firstOrNull { it.isActive } ?: return@launch
+
+            alarmInfo.forEach {
+                if(it.isActive && it.timeMS < nearestTimer!!.timeMS)
+                    nearestTimer = it
+            }
+
+            val timeToTimer = nearestTimer!!.timeMS - System.currentTimeMillis()
+            _nearestTimer.value = Utils.getTimeFromMS(timeToTimer)
         }
     }
 
@@ -69,33 +75,6 @@ class AlarmListViewModel : ViewModel()
             alarmClockService.removeTimer(timeMS)
         }
     }
-
-    private fun getTimeFromMS(timeMS: Long) : FormattedTime //TODO вынести в утилиты
-    {
-        val formattedMonth = SimpleDateFormat("MM").format(timeMS)
-        val formattedDay = SimpleDateFormat("dd").format(timeMS)
-        val formattedHours = SimpleDateFormat("HH").format(timeMS)
-        val formattedMinutes = SimpleDateFormat("mm").format(timeMS)
-
-        val month = DateFormatSymbols().months[formattedMonth.toInt()]
-
-        return FormattedTime(
-            getFormatTime(formattedMinutes),
-            getFormatTime(formattedHours),
-            formattedDay,
-            month
-        )
-    }
-
-    private fun getFormatTime(time : String) : String    //TODO вынести в утилиты
-    {
-
-        if(time.length > 1)
-            return time
-
-        return "0$time"
-
-    }
 }
 
 data class DisplayTimerInfo(
@@ -105,9 +84,3 @@ data class DisplayTimerInfo(
     val isActive : Boolean
 )
 
-data class FormattedTime(
-    val minutes : String,
-    val hours : String,
-    val day : String,
-    val month : String
-)
