@@ -68,9 +68,15 @@ class AlarmInfoFragment : Fragment(R.layout.fragment_alarm_info) {
 
         binding.soundName.text = info.soundName
         binding.isSoundActive.isChecked = info.isSoundActive
+        binding.isSoundActive.setOnClickListener {
+            sharedViewModel.currentTimer.isSoundActive = binding.isSoundActive.isChecked
+        }
 
         binding.vibrationPatternName.text = info.vibrationPatternName
         binding.isVibrationActive.isChecked = info.isVibrationActive
+        binding.isVibrationActive.setOnClickListener {
+            sharedViewModel.currentTimer.isVibrationActive = binding.isVibrationActive.isChecked
+        }
 
         sharedViewModel.currentTimer = info
     }
